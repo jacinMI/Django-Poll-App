@@ -3,4 +3,4 @@ Django
 pytz
 sqlparse
 gunicorn
-mysqlclient
+#mysqlclient
