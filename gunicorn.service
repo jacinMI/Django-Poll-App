@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/poll
-ExecStart=/home/ubuntu/poll/env/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8000 pollme.wsgi:application
+WorkingDirectory=/home/azureuser/poll
+ExecStart=/home/azureuser/poll/env/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8000 pollme.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
