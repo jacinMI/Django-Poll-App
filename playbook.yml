@@ -77,6 +77,12 @@
         name: nginx
         state: reloaded
 
-    - name: Change Permissions of Home Directory
+    - name: Change owner of Project Directory
       shell:
-        cmd: chown -R ubuntu:www-data /home/ubuntu && chmod -R 664 /home/ubuntu
+        cmd: chown ubuntu:www-data -R "{{ project }}"
+        chdir: /home/ubuntu
+
+    - name: Change permissions of Project Directory
+      shell:
+        cmd: chmod 664 -R "{{ project }}"
+        chdir: /home/ubuntu
