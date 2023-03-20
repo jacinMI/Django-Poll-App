@@ -1,5 +1,6 @@
+# git repo, ipaddreess, gunicorn, service file, virtualenv, workdir
 ---
-- name: Deploy Django-Poll-App
+- name: Deploy Django App
   hosts: all
   become: yes
   vars:
@@ -78,4 +79,4 @@
 
     - name: Change Permissions of Home Directory
       shell:
-        cmd: chmod -R 664 /home/ubuntu
+        cmd: chown -R ubuntu:www-data /home/ubuntu && chmod -R 664 /home/ubuntu
