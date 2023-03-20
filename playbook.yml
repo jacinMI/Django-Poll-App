@@ -1,0 +1,81 @@
+---
+- name: Deploy Django-Poll-App
+  hosts: all
+  become: yes
+  vars:
+    venv: /home/ubuntu/poll/env
+    project: /home/ubuntu/poll
+  tasks:
+    - name: Install Software
+      apt:
+        name:
+          - nginx
+          - python3
+          - python3-pip
+          - python3-dev
+          - libpq-dev
+          - git
+        state: latest
+        update_cache: yes
+
+    - name: Install Pip Virtualenv
+      pip:
+        name: virtualenv
+
+    - name: Clone Repository
+      git:
+        repo: https://github.com/preciousakpan/Django-Poll-App.git
+        dest: "{{ project }}"
+        update: yes
+        force: yes
+
+    - name: Create Virtualenv
+      shell:
+        cmd: python3 -m virtualenv env
+        chdir: "{{ project }}"
+
+    - name: Install Requirements
+      pip:
+        requirements: "{{ project }}/requirements.txt"
+        virtualenv:  "{{ venv }}"
+
+    - name: Make Migrations
+      shell:
+        cmd: "{{ venv }}/bin/python manage.py makemigrations"
+        chdir: "{{ project }}"
+
+    - name: Run Migrations
+      shell:
+        cmd: "{{ venv }}/bin/python manage.py migrate"
+        chdir: "{{ project }}"
+
+    # - name: Collect Static File and Answer Yes to any prompt
+    #   shell:
+    #     cmd: "{{ venv }}/bin/python manage.py collectstatic --noinput"
+    #     chdir: "{{ project }}"
+
+    - name: Copy Gunicorn Service File
+      shell:
+        cmd: mv gunicorn.service /etc/systemd/system/gunicorn.service
+        chdir: "{{ project }}"
+
+    - name: Start and Enable Gunicorn Service
+      service:
+        name: gunicorn
+        state: started
+        enabled: yes
+        daemon_reload: yes
+
+    - name: Copy Nginx Conf File
+      shell:
+        cmd: mv nginx /etc/nginx/sites-enabled/default
+        chdir: "{{ project }}"
+
+    - name: Reload Nginx Service
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: Change Permissions of Home Directory
+      shell:
+        cmd: chmod -R 664 /home/ubuntu
