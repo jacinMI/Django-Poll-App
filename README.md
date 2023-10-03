@@ -8,6 +8,8 @@ Django poll app is a full featured polling app. You have to register in this app
 <h2>Prerequisites</h2>
 <code>python== 3.5 or up and django==2.0 or up</code>
 
+<code> sudo apt-get install python3-dev default-libmysqlclient-dev </code>
+
 <h2>Installing</h2>
 <pre>open terminal and type</pre>
 <code>git clone https://github.com/devmahmud/Django-poll-app.git</code><br><br>
