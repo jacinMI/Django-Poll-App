@@ -80,15 +80,25 @@ WSGI_APPLICATION = 'pollme.wsgi.application'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
+# # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'poll',
+#         'USER': 'aitech',
+#         'PASSWORD': 'admin@12345',
+#         'HOST': "tester.mysql.database.azure.com",
+#         'PORT': '3306',
+#     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'poll',
-        'USER': 'aitech',
-        'PASSWORD': 'admin@12345',
-        'HOST': "tester.mysql.database.azure.com",
-        'PORT': '3306',
+  DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "computex",
+        "USER": "admin",
+        "PASSWORD": "12345",
+        "HOST": "database",
+        "PORT": "5432"
     }
 }
 
