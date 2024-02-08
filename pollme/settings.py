@@ -92,14 +92,14 @@ WSGI_APPLICATION = 'pollme.wsgi.application'
 #     }
 # }
   DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "computex",
-        "USER": "admin",
-        "PASSWORD": "12345",
-        "HOST": "database",
-        "PORT": "5432"
-    }
+       "default": {
+           "ENGINE": "django.db.backends.postgresql",
+           "NAME": "computex",
+           "USER": "admin",
+           "PASSWORD": "12345",
+           "HOST": "database",
+           "PORT": "5432"
+        }
 }
 
 # Password validation
