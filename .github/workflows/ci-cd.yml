@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         run: cat manage.py
 
-   build:
+  build:
      runs-on: ubuntu-latest
      steps:
        - name: Clone repo
