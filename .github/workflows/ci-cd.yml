@@ -42,14 +42,15 @@ jobs:
            push: true
            tags: jessymi/django-poll
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy Via SSH
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.SSH_HOST }}
-  #         username: ${{ secrets.SSH_USERNAME }}
-  #         key: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         script: |
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker compose up
            
