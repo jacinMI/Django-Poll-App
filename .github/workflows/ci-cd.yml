@@ -21,6 +21,7 @@ jobs:
         run: cat manage.py
 
   build:
+     needs: test
      runs-on: ubuntu-latest
      steps:
        - name: Clone repo
@@ -43,6 +44,7 @@ jobs:
            tags: jessymi/django-poll
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Via SSH
