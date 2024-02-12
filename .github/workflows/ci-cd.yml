@@ -53,5 +53,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/Django-Poll-App
-            docker compose up
+            docker-compose up
            
