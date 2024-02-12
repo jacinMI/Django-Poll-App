@@ -2,12 +2,11 @@ version: "3.8"
 
 services:
   backend:
-    build:
-      context: . 
+    image: jessymi/django-poll
     ports:
       - 8080:8000
     depends_on:
-      - database      
+      - database    
 
   database:
     image: postgres:alpine
